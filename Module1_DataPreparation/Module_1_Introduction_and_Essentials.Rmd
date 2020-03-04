@@ -3,9 +3,9 @@ title: "Module 1: Introduction and Essentials"
 subtitle: "Preparing Data for Modeling"
 author: "Swathi Dhanasekaran"
 date: "04/03/2020"
-geometry: margin=1.1cm
-fig_width: 15 
-fig_height: 15
+geometry: "left=3cm,right=3cm,top=2cm,bottom=2cm"
+fig_width: 7
+fig_height: 7
 output:
   html_document:
     css: style.css
@@ -48,12 +48,12 @@ cat("Total Transacation :", sum(mydat$Revenue), "\nMean number of visits :", rou
 ```
 
 <br>
-**3) Create a bar/column chart of gender (x-axis) versus revenue (y-axis). Omit missing values, i.e., where gender**
+**3) Create a bar/column chart of gender (x-axis) versus revenue (y-axis). Omit missing values, i.e., where gender is NA**
 ```{r, warning=FALSE, message=FALSE}
 gen_rev <- aggregate(Revenue ~ Gender, mydat[!is.na(mydat$Gender),], sum)
 ggplot(data = as.data.frame(gen_rev), aes(x=Gender, y=Revenue)) +
-  geom_bar(stat = "identity", width=0.5, fill = c("hotpink","blue")) +
-  geom_text(aes(label=round(Revenue)), vjust=1.6, color="white", size=4) +
+  geom_bar(stat = "identity", width=0.5, fill = c("hotpink","skyblue"), alpha = 0.6) +
+  geom_text(aes(label=round(Revenue)), vjust=1.6, color="white", size=4.5) +
   ggtitle("Gender Vs Revenue") +
   theme(plot.title = element_text(color="black", size=12, face="bold",hjust = 0.5),
         axis.title.x = element_text(color="black", size=12, face="italic"),
